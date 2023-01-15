@@ -1,9 +1,9 @@
-Name: stockgoods.rpc
-ListenOn: 127.0.0.1:9092
+Name: stockgoodslist.rpc
+ListenOn: 0.0.0.0:9092
 Etcd:
   Hosts:
   - 49.233.55.149:2379
-  Key: stockgoods.rpc
+  Key: stockgoodslist.rpc
 Mysql:
   StockTable:
     User: "root"

@@ -20,120 +20,18 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type StockOpGoodsID struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	GoodsId int64 `protobuf:"varint,1,opt,name=goods_id,json=goodsId,proto3" json:"goods_id,omitempty"`
-}
-
-func (x *StockOpGoodsID) Reset() {
-	*x = StockOpGoodsID{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_stock_goods_proto_msgTypes[0]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *StockOpGoodsID) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*StockOpGoodsID) ProtoMessage() {}
-
-func (x *StockOpGoodsID) ProtoReflect() protoreflect.Message {
-	mi := &file_stock_goods_proto_msgTypes[0]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use StockOpGoodsID.ProtoReflect.Descriptor instead.
-func (*StockOpGoodsID) Descriptor() ([]byte, []int) {
-	return file_stock_goods_proto_rawDescGZIP(), []int{0}
-}
-
-func (x *StockOpGoodsID) GetGoodsId() int64 {
-	if x != nil {
-		return x.GoodsId
-	}
-	return 0
-}
-
-type StockGoodsData struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	GoodsId  int64 `protobuf:"varint,1,opt,name=goods_id,json=goodsId,proto3" json:"goods_id,omitempty"`
-	GoodsNum int64 `protobuf:"varint,2,opt,name=goods_num,json=goodsNum,proto3" json:"goods_num,omitempty"`
-}
-
-func (x *StockGoodsData) Reset() {
-	*x = StockGoodsData{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_stock_goods_proto_msgTypes[1]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *StockGoodsData) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*StockGoodsData) ProtoMessage() {}
-
-func (x *StockGoodsData) ProtoReflect() protoreflect.Message {
-	mi := &file_stock_goods_proto_msgTypes[1]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use StockGoodsData.ProtoReflect.Descriptor instead.
-func (*StockGoodsData) Descriptor() ([]byte, []int) {
-	return file_stock_goods_proto_rawDescGZIP(), []int{1}
-}
-
-func (x *StockGoodsData) GetGoodsId() int64 {
-	if x != nil {
-		return x.GoodsId
-	}
-	return 0
-}
-
-func (x *StockGoodsData) GetGoodsNum() int64 {
-	if x != nil {
-		return x.GoodsNum
-	}
-	return 0
-}
-
 type GetGoodsStockRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	GoodsIDList []*StockOpGoodsID `protobuf:"bytes,1,rep,name=goodsIDList,proto3" json:"goodsIDList,omitempty"`
+	GoodsID int64 `protobuf:"varint,1,opt,name=goodsID,proto3" json:"goodsID,omitempty"`
 }
 
 func (x *GetGoodsStockRequest) Reset() {
 	*x = GetGoodsStockRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_stock_goods_proto_msgTypes[2]
+		mi := &file_stock_goods_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -146,7 +44,7 @@ func (x *GetGoodsStockRequest) String() string {
 func (*GetGoodsStockRequest) ProtoMessage() {}
 
 func (x *GetGoodsStockRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_stock_goods_proto_msgTypes[2]
+	mi := &file_stock_goods_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -159,14 +57,14 @@ func (x *GetGoodsStockRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetGoodsStockRequest.ProtoReflect.Descriptor instead.
 func (*GetGoodsStockRequest) Descriptor() ([]byte, []int) {
-	return file_stock_goods_proto_rawDescGZIP(), []int{2}
+	return file_stock_goods_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *GetGoodsStockRequest) GetGoodsIDList() []*StockOpGoodsID {
+func (x *GetGoodsStockRequest) GetGoodsID() int64 {
 	if x != nil {
-		return x.GoodsIDList
+		return x.GoodsID
 	}
-	return nil
+	return 0
 }
 
 type GetGoodsStockResponse struct {
@@ -174,14 +72,14 @@ type GetGoodsStockResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	States         int64             `protobuf:"varint,1,opt,name=states,proto3" json:"states,omitempty"`
-	GoodsStockList []*StockGoodsData `protobuf:"bytes,2,rep,name=GoodsStockList,proto3" json:"GoodsStockList,omitempty"`
+	States    int64 `protobuf:"varint,1,opt,name=states,proto3" json:"states,omitempty"`
+	GoodsNums int64 `protobuf:"varint,2,opt,name=goods_nums,json=goodsNums,proto3" json:"goods_nums,omitempty"`
 }
 
 func (x *GetGoodsStockResponse) Reset() {
 	*x = GetGoodsStockResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_stock_goods_proto_msgTypes[3]
+		mi := &file_stock_goods_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -194,7 +92,7 @@ func (x *GetGoodsStockResponse) String() string {
 func (*GetGoodsStockResponse) ProtoMessage() {}
 
 func (x *GetGoodsStockResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_stock_goods_proto_msgTypes[3]
+	mi := &file_stock_goods_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -207,7 +105,7 @@ func (x *GetGoodsStockResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetGoodsStockResponse.ProtoReflect.Descriptor instead.
 func (*GetGoodsStockResponse) Descriptor() ([]byte, []int) {
-	return file_stock_goods_proto_rawDescGZIP(), []int{3}
+	return file_stock_goods_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *GetGoodsStockResponse) GetStates() int64 {
@@ -217,11 +115,11 @@ func (x *GetGoodsStockResponse) GetStates() int64 {
 	return 0
 }
 
-func (x *GetGoodsStockResponse) GetGoodsStockList() []*StockGoodsData {
+func (x *GetGoodsStockResponse) GetGoodsNums() int64 {
 	if x != nil {
-		return x.GoodsStockList
+		return x.GoodsNums
 	}
-	return nil
+	return 0
 }
 
 var File_stock_goods_proto protoreflect.FileDescriptor
@@ -229,29 +127,17 @@ var File_stock_goods_proto protoreflect.FileDescriptor
 var file_stock_goods_proto_rawDesc = []byte{
 	0x0a, 0x11, 0x73, 0x74, 0x6f, 0x63, 0x6b, 0x5f, 0x67, 0x6f, 0x6f, 0x64, 0x73, 0x2e, 0x70, 0x72,
 	0x6f, 0x74, 0x6f, 0x12, 0x0b, 0x73, 0x74, 0x6f, 0x63, 0x6b, 0x5f, 0x67, 0x6f, 0x6f, 0x64, 0x73,
-	0x22, 0x2b, 0x0a, 0x0e, 0x53, 0x74, 0x6f, 0x63, 0x6b, 0x4f, 0x70, 0x47, 0x6f, 0x6f, 0x64, 0x73,
-	0x49, 0x44, 0x12, 0x19, 0x0a, 0x08, 0x67, 0x6f, 0x6f, 0x64, 0x73, 0x5f, 0x69, 0x64, 0x18, 0x01,
-	0x20, 0x01, 0x28, 0x03, 0x52, 0x07, 0x67, 0x6f, 0x6f, 0x64, 0x73, 0x49, 0x64, 0x22, 0x48, 0x0a,
-	0x0e, 0x53, 0x74, 0x6f, 0x63, 0x6b, 0x47, 0x6f, 0x6f, 0x64, 0x73, 0x44, 0x61, 0x74, 0x61, 0x12,
-	0x19, 0x0a, 0x08, 0x67, 0x6f, 0x6f, 0x64, 0x73, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28,
-	0x03, 0x52, 0x07, 0x67, 0x6f, 0x6f, 0x64, 0x73, 0x49, 0x64, 0x12, 0x1b, 0x0a, 0x09, 0x67, 0x6f,
-	0x6f, 0x64, 0x73, 0x5f, 0x6e, 0x75, 0x6d, 0x18, 0x02, 0x20, 0x01, 0x28, 0x03, 0x52, 0x08, 0x67,
-	0x6f, 0x6f, 0x64, 0x73, 0x4e, 0x75, 0x6d, 0x22, 0x55, 0x0a, 0x14, 0x47, 0x65, 0x74, 0x47, 0x6f,
-	0x6f, 0x64, 0x73, 0x53, 0x74, 0x6f, 0x63, 0x6b, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12,
-	0x3d, 0x0a, 0x0b, 0x67, 0x6f, 0x6f, 0x64, 0x73, 0x49, 0x44, 0x4c, 0x69, 0x73, 0x74, 0x18, 0x01,
-	0x20, 0x03, 0x28, 0x0b, 0x32, 0x1b, 0x2e, 0x73, 0x74, 0x6f, 0x63, 0x6b, 0x5f, 0x67, 0x6f, 0x6f,
-	0x64, 0x73, 0x2e, 0x53, 0x74, 0x6f, 0x63, 0x6b, 0x4f, 0x70, 0x47, 0x6f, 0x6f, 0x64, 0x73, 0x49,
-	0x44, 0x52, 0x0b, 0x67, 0x6f, 0x6f, 0x64, 0x73, 0x49, 0x44, 0x4c, 0x69, 0x73, 0x74, 0x22, 0x74,
-	0x0a, 0x15, 0x47, 0x65, 0x74, 0x47, 0x6f, 0x6f, 0x64, 0x73, 0x53, 0x74, 0x6f, 0x63, 0x6b, 0x52,
-	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x16, 0x0a, 0x06, 0x73, 0x74, 0x61, 0x74, 0x65,
-	0x73, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x06, 0x73, 0x74, 0x61, 0x74, 0x65, 0x73, 0x12,
-	0x43, 0x0a, 0x0e, 0x47, 0x6f, 0x6f, 0x64, 0x73, 0x53, 0x74, 0x6f, 0x63, 0x6b, 0x4c, 0x69, 0x73,
-	0x74, 0x18, 0x02, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x1b, 0x2e, 0x73, 0x74, 0x6f, 0x63, 0x6b, 0x5f,
-	0x67, 0x6f, 0x6f, 0x64, 0x73, 0x2e, 0x53, 0x74, 0x6f, 0x63, 0x6b, 0x47, 0x6f, 0x6f, 0x64, 0x73,
-	0x44, 0x61, 0x74, 0x61, 0x52, 0x0e, 0x47, 0x6f, 0x6f, 0x64, 0x73, 0x53, 0x74, 0x6f, 0x63, 0x6b,
-	0x4c, 0x69, 0x73, 0x74, 0x32, 0x6e, 0x0a, 0x07, 0x53, 0x74, 0x6f, 0x63, 0x6b, 0x4f, 0x70, 0x12,
-	0x63, 0x0a, 0x1a, 0x47, 0x65, 0x74, 0x47, 0x6f, 0x6f, 0x64, 0x73, 0x53, 0x74, 0x6f, 0x63, 0x6b,
-	0x42, 0x79, 0x47, 0x6f, 0x6f, 0x64, 0x73, 0x49, 0x44, 0x4c, 0x69, 0x73, 0x74, 0x12, 0x21, 0x2e,
+	0x22, 0x30, 0x0a, 0x14, 0x47, 0x65, 0x74, 0x47, 0x6f, 0x6f, 0x64, 0x73, 0x53, 0x74, 0x6f, 0x63,
+	0x6b, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x18, 0x0a, 0x07, 0x67, 0x6f, 0x6f, 0x64,
+	0x73, 0x49, 0x44, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x07, 0x67, 0x6f, 0x6f, 0x64, 0x73,
+	0x49, 0x44, 0x22, 0x4e, 0x0a, 0x15, 0x47, 0x65, 0x74, 0x47, 0x6f, 0x6f, 0x64, 0x73, 0x53, 0x74,
+	0x6f, 0x63, 0x6b, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x16, 0x0a, 0x06, 0x73,
+	0x74, 0x61, 0x74, 0x65, 0x73, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x06, 0x73, 0x74, 0x61,
+	0x74, 0x65, 0x73, 0x12, 0x1d, 0x0a, 0x0a, 0x67, 0x6f, 0x6f, 0x64, 0x73, 0x5f, 0x6e, 0x75, 0x6d,
+	0x73, 0x18, 0x02, 0x20, 0x01, 0x28, 0x03, 0x52, 0x09, 0x67, 0x6f, 0x6f, 0x64, 0x73, 0x4e, 0x75,
+	0x6d, 0x73, 0x32, 0x70, 0x0a, 0x0d, 0x47, 0x65, 0x74, 0x47, 0x6f, 0x6f, 0x64, 0x73, 0x53, 0x74,
+	0x6f, 0x63, 0x6b, 0x12, 0x5f, 0x0a, 0x16, 0x47, 0x65, 0x74, 0x47, 0x6f, 0x6f, 0x64, 0x73, 0x53,
+	0x74, 0x6f, 0x63, 0x6b, 0x42, 0x79, 0x47, 0x6f, 0x6f, 0x64, 0x73, 0x49, 0x44, 0x12, 0x21, 0x2e,
 	0x73, 0x74, 0x6f, 0x63, 0x6b, 0x5f, 0x67, 0x6f, 0x6f, 0x64, 0x73, 0x2e, 0x47, 0x65, 0x74, 0x47,
 	0x6f, 0x6f, 0x64, 0x73, 0x53, 0x74, 0x6f, 0x63, 0x6b, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
 	0x1a, 0x22, 0x2e, 0x73, 0x74, 0x6f, 0x63, 0x6b, 0x5f, 0x67, 0x6f, 0x6f, 0x64, 0x73, 0x2e, 0x47,
@@ -272,23 +158,19 @@ func file_stock_goods_proto_rawDescGZIP() []byte {
 	return file_stock_goods_proto_rawDescData
 }
 
-var file_stock_goods_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
+var file_stock_goods_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
 var file_stock_goods_proto_goTypes = []interface{}{
-	(*StockOpGoodsID)(nil),        // 0: stock_goods.StockOpGoodsID
-	(*StockGoodsData)(nil),        // 1: stock_goods.StockGoodsData
-	(*GetGoodsStockRequest)(nil),  // 2: stock_goods.GetGoodsStockRequest
-	(*GetGoodsStockResponse)(nil), // 3: stock_goods.GetGoodsStockResponse
+	(*GetGoodsStockRequest)(nil),  // 0: stock_goods.GetGoodsStockRequest
+	(*GetGoodsStockResponse)(nil), // 1: stock_goods.GetGoodsStockResponse
 }
 var file_stock_goods_proto_depIdxs = []int32{
-	0, // 0: stock_goods.GetGoodsStockRequest.goodsIDList:type_name -> stock_goods.StockOpGoodsID
-	1, // 1: stock_goods.GetGoodsStockResponse.GoodsStockList:type_name -> stock_goods.StockGoodsData
-	2, // 2: stock_goods.StockOp.GetGoodsStockByGoodsIDList:input_type -> stock_goods.GetGoodsStockRequest
-	3, // 3: stock_goods.StockOp.GetGoodsStockByGoodsIDList:output_type -> stock_goods.GetGoodsStockResponse
-	3, // [3:4] is the sub-list for method output_type
-	2, // [2:3] is the sub-list for method input_type
-	2, // [2:2] is the sub-list for extension type_name
-	2, // [2:2] is the sub-list for extension extendee
-	0, // [0:2] is the sub-list for field type_name
+	0, // 0: stock_goods.GetGoodsStock.GetGoodsStockByGoodsID:input_type -> stock_goods.GetGoodsStockRequest
+	1, // 1: stock_goods.GetGoodsStock.GetGoodsStockByGoodsID:output_type -> stock_goods.GetGoodsStockResponse
+	1, // [1:2] is the sub-list for method output_type
+	0, // [0:1] is the sub-list for method input_type
+	0, // [0:0] is the sub-list for extension type_name
+	0, // [0:0] is the sub-list for extension extendee
+	0, // [0:0] is the sub-list for field type_name
 }
 
 func init() { file_stock_goods_proto_init() }
@@ -298,30 +180,6 @@ func file_stock_goods_proto_init() {
 	}
 	if !protoimpl.UnsafeEnabled {
 		file_stock_goods_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*StockOpGoodsID); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_stock_goods_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*StockGoodsData); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_stock_goods_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GetGoodsStockRequest); i {
 			case 0:
 				return &v.state
@@ -333,7 +191,7 @@ func file_stock_goods_proto_init() {
 				return nil
 			}
 		}
-		file_stock_goods_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
+		file_stock_goods_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GetGoodsStockResponse); i {
 			case 0:
 				return &v.state
@@ -352,7 +210,7 @@ func file_stock_goods_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_stock_goods_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   4,
+			NumMessages:   2,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

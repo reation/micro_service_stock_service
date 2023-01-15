@@ -21,6 +21,7 @@ func NewServiceContext(c config.Config) *ServiceContext {
 		c.Mysql.StockTable.Port,
 		c.Mysql.StockTable.DBName,
 	)
+
 	return &ServiceContext{
 		Config:     c,
 		StockModel: model.NewGoodsStockModel(sqlx.NewMysql(dataSourceUrl)),

@@ -5,7 +5,7 @@ import (
 	"github.com/reation/micro_service_stock_service/config"
 	"github.com/reation/micro_service_stock_service/model"
 
-	"github.com/reation/micro_service_stock_service/get_goods_stock_list/internal/svc"
+	"github.com/reation/micro_service_stock_service/goods_stock_list/internal/svc"
 	"github.com/reation/micro_service_stock_service/protoc"
 
 	"github.com/zeromicro/go-zero/core/logx"
@@ -25,23 +25,24 @@ func NewGetGoodsStockByGoodsIDListLogic(ctx context.Context, svcCtx *svc.Service
 	}
 }
 
-func (l *GetGoodsStockByGoodsIDListLogic) GetGoodsStockByGoodsIDList(in *protoc.GetGoodsStockRequest) (*protoc.GetGoodsStockResponse, error) {
+func (l *GetGoodsStockByGoodsIDListLogic) GetGoodsStockByGoodsIDList(in *protoc.GetGoodsStockListRequest) (*protoc.GetGoodsStockListResponse, error) {
+
 	states, goodsStockList, _ := l.GetGoodsStockList(in.GetGoodsIDList())
 	if states != config.GOODS_STOCK_STATE_NORMAL {
-		return &protoc.GetGoodsStockResponse{States: states, GoodsStockList: nil}, nil
+		return &protoc.GetGoodsStockListResponse{States: states, GoodsStockList: nil}, nil
 	}
-	var resp = make([]*protoc.StockGoodsData, len(*goodsStockList))
+	var resp = make([]*protoc.GetGoodsStockDataList, len(*goodsStockList))
 	for k, v := range *goodsStockList {
-		resp[k] = &protoc.StockGoodsData{
+		resp[k] = &protoc.GetGoodsStockDataList{
 			GoodsId:  v.GoodsId,
 			GoodsNum: v.GoodsNum,
 		}
 	}
 
-	return &protoc.GetGoodsStockResponse{States: states, GoodsStockList: resp}, nil
+	return &protoc.GetGoodsStockListResponse{States: states, GoodsStockList: resp}, nil
 }
 
-func (l *GetGoodsStockByGoodsIDListLogic) GetGoodsStockList(goodsIDList []*protoc.StockOpGoodsID) (int64, *[]model.GoodsStock, error) {
+func (l *GetGoodsStockByGoodsIDListLogic) GetGoodsStockList(goodsIDList []*protoc.GetGoodsStockIDList) (int64, *[]model.GoodsStock, error) {
 	var goodsIDS = make([]int64, len(goodsIDList))
 	for k, v := range goodsIDList {
 		goodsIDS[k] = v.GoodsId

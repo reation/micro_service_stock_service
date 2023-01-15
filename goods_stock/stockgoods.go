@@ -4,9 +4,9 @@ import (
 	"flag"
 	"fmt"
 
-	"github.com/reation/micro_service_stock_service/get_goods_stock_list/internal/config"
-	"github.com/reation/micro_service_stock_service/get_goods_stock_list/internal/server"
-	"github.com/reation/micro_service_stock_service/get_goods_stock_list/internal/svc"
+	"github.com/reation/micro_service_stock_service/goods_stock/internal/config"
+	"github.com/reation/micro_service_stock_service/goods_stock/internal/server"
+	"github.com/reation/micro_service_stock_service/goods_stock/internal/svc"
 	"github.com/reation/micro_service_stock_service/protoc"
 
 	"github.com/zeromicro/go-zero/core/conf"
@@ -26,7 +26,7 @@ func main() {
 	ctx := svc.NewServiceContext(c)
 
 	s := zrpc.MustNewServer(c.RpcServerConf, func(grpcServer *grpc.Server) {
-		protoc.RegisterStockOpServer(grpcServer, server.NewStockOpServer(ctx))
+		protoc.RegisterGetGoodsStockServer(grpcServer, server.NewGetGoodsStockServer(ctx))
 
 		if c.Mode == service.DevMode || c.Mode == service.TestMode {
 			reflection.Register(grpcServer)

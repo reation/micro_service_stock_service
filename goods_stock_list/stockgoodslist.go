@@ -4,9 +4,9 @@ import (
 	"flag"
 	"fmt"
 
-	"github.com/reation/micro_service_stock_service/goods_stock/internal/config"
-	"github.com/reation/micro_service_stock_service/goods_stock/internal/server"
-	"github.com/reation/micro_service_stock_service/goods_stock/internal/svc"
+	"github.com/reation/micro_service_stock_service/goods_stock_list/internal/config"
+	"github.com/reation/micro_service_stock_service/goods_stock_list/internal/server"
+	"github.com/reation/micro_service_stock_service/goods_stock_list/internal/svc"
 	"github.com/reation/micro_service_stock_service/protoc"
 
 	"github.com/zeromicro/go-zero/core/conf"
@@ -16,7 +16,7 @@ import (
 	"google.golang.org/grpc/reflection"
 )
 
-var configFile = flag.String("f", "etc/goodsstock.yaml", "the config file")
+var configFile = flag.String("f", "etc/stockgoodslist.yaml", "the config file")
 
 func main() {
 	flag.Parse()
@@ -26,7 +26,7 @@ func main() {
 	ctx := svc.NewServiceContext(c)
 
 	s := zrpc.MustNewServer(c.RpcServerConf, func(grpcServer *grpc.Server) {
-		protoc.RegisterStockOpServer(grpcServer, server.NewStockOpServer(ctx))
+		protoc.RegisterGetGoodsStockListServer(grpcServer, server.NewGetGoodsStockListServer(ctx))
 
 		if c.Mode == service.DevMode || c.Mode == service.TestMode {
 			reflection.Register(grpcServer)

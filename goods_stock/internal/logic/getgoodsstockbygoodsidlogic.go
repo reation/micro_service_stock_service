@@ -26,7 +26,6 @@ func NewGetGoodsStockByGoodsIDLogic(ctx context.Context, svcCtx *svc.ServiceCont
 }
 
 func (l *GetGoodsStockByGoodsIDLogic) GetGoodsStockByGoodsID(in *protoc.GetGoodsStockRequest) (*protoc.GetGoodsStockResponse, error) {
-	// todo: add your logic here and delete this line
 	resp, err := l.svcCtx.StockModel.GetGoodsStockInfoByGoodsID(l.ctx, in.GetGoodsID())
 	if err == model.ErrNotFound {
 		return &protoc.GetGoodsStockResponse{States: config.GOODS_STOCK_STATE_EMPTY, GoodsNums: 0}, nil
