@@ -36,8 +36,3 @@ func (s *StockOpServer) SupplierReduce(ctx context.Context, in *protoc.SupplierR
 	l := logic.NewSupplierReduceLogic(ctx, s.svcCtx)
 	return l.SupplierReduce(in)
 }
-
-func (s *StockOpServer) GetGoodsStockByGoodsIDList(ctx context.Context, in *protoc.GetGoodsStockRequest) (*protoc.GetGoodsStockResponse, error) {
-	l := logic.NewGetGoodsStockByGoodsIDListLogic(ctx, s.svcCtx)
-	return l.GetGoodsStockByGoodsIDList(in)
-}

@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package stock_goods;
+
+option go_package = "./protoc";
+
+message GetGoodsStockRequest{
+  int64 goodsID = 1;
+}
+
+message GetGoodsStockResponse{
+  int64 states = 1;
+  int64 goods_nums = 2;
+}
+
+service StockOp{
+  rpc GetGoodsStockByGoodsID(GetGoodsStockRequest) returns (GetGoodsStockResponse);
+}

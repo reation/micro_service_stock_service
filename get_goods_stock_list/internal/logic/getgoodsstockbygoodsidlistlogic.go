@@ -5,8 +5,8 @@ import (
 	"github.com/reation/micro_service_stock_service/config"
 	"github.com/reation/micro_service_stock_service/model"
 
+	"github.com/reation/micro_service_stock_service/get_goods_stock_list/internal/svc"
 	"github.com/reation/micro_service_stock_service/protoc"
-	"github.com/reation/micro_service_stock_service/stock_op/internal/svc"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )
@@ -26,20 +26,19 @@ func NewGetGoodsStockByGoodsIDListLogic(ctx context.Context, svcCtx *svc.Service
 }
 
 func (l *GetGoodsStockByGoodsIDListLogic) GetGoodsStockByGoodsIDList(in *protoc.GetGoodsStockRequest) (*protoc.GetGoodsStockResponse, error) {
-	// todo: add your logic here and delete this line
-	states, goodsStockList, _ := l.GetGoodsStockList(in.GoodsID)
+	states, goodsStockList, _ := l.GetGoodsStockList(in.GetGoodsIDList())
 	if states != config.GOODS_STOCK_STATE_NORMAL {
-		return &protoc.GetGoodsStockResponse{States: states, GoodsStock: nil}, nil
+		return &protoc.GetGoodsStockResponse{States: states, GoodsStockList: nil}, nil
 	}
 	var resp = make([]*protoc.StockGoodsData, len(*goodsStockList))
-	for _, v := range *goodsStockList {
-		resp[v.GoodsId] = &protoc.StockGoodsData{
+	for k, v := range *goodsStockList {
+		resp[k] = &protoc.StockGoodsData{
 			GoodsId:  v.GoodsId,
 			GoodsNum: v.GoodsNum,
 		}
 	}
 
-	return &protoc.GetGoodsStockResponse{States: states, GoodsStock: resp}, nil
+	return &protoc.GetGoodsStockResponse{States: states, GoodsStockList: resp}, nil
 }
 
 func (l *GetGoodsStockByGoodsIDListLogic) GetGoodsStockList(goodsIDList []*protoc.StockOpGoodsID) (int64, *[]model.GoodsStock, error) {
@@ -47,7 +46,7 @@ func (l *GetGoodsStockByGoodsIDListLogic) GetGoodsStockList(goodsIDList []*proto
 	for k, v := range goodsIDList {
 		goodsIDS[k] = v.GoodsId
 	}
-	goodsStockList, err := l.svcCtx.StockModel.GoodsStockModel.GetGoodsStockListByGoodsIDList(l.ctx, goodsIDS)
+	goodsStockList, err := l.svcCtx.StockModel.GetGoodsStockListByGoodsIDList(l.ctx, goodsIDS)
 	if err == model.ErrNotFound {
 		return config.GOODS_STOCK_STATE_EMPTY, nil, nil
 	}

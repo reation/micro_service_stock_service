@@ -13,13 +13,9 @@ import (
 )
 
 type (
-	GetGoodsStockRequest     = protoc.GetGoodsStockRequest
-	GetGoodsStockResponse    = protoc.GetGoodsStockResponse
 	OrderReturnRequest       = protoc.OrderReturnRequest
 	OrderReturnResponse      = protoc.OrderReturnResponse
-	StockGoodsData           = protoc.StockGoodsData
 	StockOpGoodInfo          = protoc.StockOpGoodInfo
-	StockOpGoodsID           = protoc.StockOpGoodsID
 	SupplierIncreaseRequest  = protoc.SupplierIncreaseRequest
 	SupplierIncreaseResponse = protoc.SupplierIncreaseResponse
 	SupplierReduceRequest    = protoc.SupplierReduceRequest
@@ -29,7 +25,6 @@ type (
 		OrderReturn(ctx context.Context, in *OrderReturnRequest, opts ...grpc.CallOption) (*OrderReturnResponse, error)
 		SupplierIncrease(ctx context.Context, in *SupplierIncreaseRequest, opts ...grpc.CallOption) (*SupplierIncreaseResponse, error)
 		SupplierReduce(ctx context.Context, in *SupplierReduceRequest, opts ...grpc.CallOption) (*SupplierReduceResponse, error)
-		GetGoodsStockByGoodsIDList(ctx context.Context, in *GetGoodsStockRequest, opts ...grpc.CallOption) (*GetGoodsStockResponse, error)
 	}
 
 	defaultStockOp struct {
@@ -56,9 +51,4 @@ func (m *defaultStockOp) SupplierIncrease(ctx context.Context, in *SupplierIncre
 func (m *defaultStockOp) SupplierReduce(ctx context.Context, in *SupplierReduceRequest, opts ...grpc.CallOption) (*SupplierReduceResponse, error) {
 	client := protoc.NewStockOpClient(m.cli.Conn())
 	return client.SupplierReduce(ctx, in, opts...)
-}
-
-func (m *defaultStockOp) GetGoodsStockByGoodsIDList(ctx context.Context, in *GetGoodsStockRequest, opts ...grpc.CallOption) (*GetGoodsStockResponse, error) {
-	client := protoc.NewStockOpClient(m.cli.Conn())
-	return client.GetGoodsStockByGoodsIDList(ctx, in, opts...)
 }
